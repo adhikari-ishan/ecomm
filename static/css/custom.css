@@ -1,0 +1,98 @@
+/* Make all product images same size */
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Ensure card content behaves consistently */
+.card.h-100 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push footer/button to bottom */
+.card-body {
+  flex-grow: 1;
+}
+
+/* Optional: limit long product names */
+.card-body h5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+body {
+  background-color: #f8f9fa;
+}
+.container {
+  max-width: 1200px;
+}
+
+.card {
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #333;
+}
+
+h1, h2, h3, h5 {
+  font-weight: 600;
+}
+
+section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.card {
+  backdrop-filter: blur(5px);
+}
+
+
+
+body {
+  background-color: #eef2f7 !important;
+}
+
+.navbar {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #000000 !important;
+  border: 1px solid white !important;
+}
+
+.navbar a,
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: white !important;
+}

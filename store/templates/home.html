@@ -1,76 +1,132 @@
 {% extends "base.html" %}
 
-{% block content %} 
-        <!-- Header-->
-        {% comment %} <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Get your favourite watches in few steps</p>
-                </div>
-            </div>
-        </header> {% endcomment %}
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+{% block title %}
+Online Electronic Gadget Store | Buy Monitors, Keyboards, Mice & Accessories in Nepal
+{% endblock %}
 
+{% block description %}
+Shop quality monitors, keyboards, gaming mice, headphones, and computer accessories online in Nepal. Affordable prices, secure checkout, and fast delivery.
+{% endblock %}
 
-                    {% for product in products%}
+{% block content %}
 
-                        {% if product.is_sale %}
+<header class="py-5 bg-light border-bottom">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">
+            Online Electronic Gadget Store
+        </h1>
 
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src="{{product.image.url}}" alt="..." />
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder"> {{product.name}} </h5>
-                                            <!-- Product price-->
-                                        <strike> Rs {{product.price}}  </strike> <br>
-                                        Rs {{product.sale_price}} 
-                                        
-                                        </div>
-                                    </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href=" {% url "product" product.id  %} ">View product</a></div>
-                                    </div>
-                                </div>
-                            </div>
+        <p class="lead">
+            Buy premium computer accessories including monitors, keyboards,
+            gaming mice, headphones, webcams, speakers, and other electronic
+            gadgets at competitive prices in Nepal.
+        </p>
+    </div>
+</header>
+
+<main>
+
+<section class="py-5">
+
+    <div class="container px-4 px-lg-5">
+
+        <h2 class="text-center mb-5">
+            Featured Products
+        </h2>
+
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            {% for product in products %}
+
+            <article class="col mb-5">
+
+                <div class="card h-100 shadow-sm">
+
+                    {% if product.is_sale %}
+                    <span class="badge bg-danger position-absolute m-2">
+                        Sale
+                    </span>
+                    {% endif %}
+
+                    <!-- Product Image -->
+                    <img
+                        class="card-img-top"
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                        loading="lazy"
+                    >
+
+                    <div class="card-body">
+
+                        <div class="text-center">
+
+                            <h3 class="h5 fw-bold">
+                                {{ product.name }}
+                            </h3>
+
+                            {% if product.is_sale %}
+
+                                <p>
+
+                                    <span class="text-muted">
+                                        <del>Rs {{ product.price }}</del>
+                                    </span>
+
+                                    <br>
+
+                                    <span class="text-danger fw-bold">
+                                        Rs {{ product.sale_price }}
+                                    </span>
+
+                                </p>
+
                             {% else %}
 
-                    
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src="{{product.image.url}}" alt="..." />
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder"> {{product.name}} </h5>
-                                            <!-- Product price-->
-                                            Rs {{product.price}}
-                                        </div>
-                                    </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href=" {% url "product" product.id  %} ">View product</a></div>
-                                    </div>
-                                </div>
-                            </div>
+                                <p class="fw-bold">
+                                    Rs {{ product.price }}
+                                </p>
 
+                            {% endif %}
 
-                        {% endif %}
-                    {% endfor %}
-                  
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer bg-transparent border-top-0">
+
+                        <div class="text-center">
+
+                            <a href="{% url 'product' product.id %}"
+                               class="btn btn-dark">
+
+                                View Product
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-        </section>
 
-        
-{% endblock content %}               
+            </article>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <p>No products available.</p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+{% endblock %}
